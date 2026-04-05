@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: #0d0d14;
+  color: #f5f5f5;
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Global ambient background — purple top-left, green bottom-right */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 0%,   rgba(108, 60, 220, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 100%,  rgba(30, 140, 80,  0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 50%,   rgba(233, 69, 96,  0.04) 0%, transparent 70%);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d0d14; }
+::-webkit-scrollbar-thumb { background: #e94560; border-radius: 3px; }
+
+.red-glow   { box-shadow: 0 0 24px rgba(233, 69, 96, 0.3); }
+.blue-glow  { box-shadow: 0 0 24px rgba(15, 52, 96, 0.5); }
+.purple-glow { box-shadow: 0 0 30px rgba(108, 60, 220, 0.25); }
+.card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(108, 60, 220, 0.12); }
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-secondary text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-red-500 transition-all duration-200 text-sm shadow-red;
+  }
+  .btn-ghost {
+    @apply border border-brand-border text-brand-light px-5 py-2.5 rounded-xl hover:border-brand-secondary hover:text-brand-secondary transition-all duration-200 text-sm;
+  }
+  .card {
+    @apply bg-brand-card border border-brand-border rounded-2xl p-5 card-hover shadow-card;
+  }
+  .input {
+    @apply bg-brand-surface border border-brand-border rounded-xl px-4 py-2.5 text-brand-light text-sm w-full focus:outline-none focus:border-brand-secondary transition-colors placeholder-brand-muted;
+  }
+  .label {
+    @apply text-brand-muted text-xs font-semibold uppercase tracking-wider mb-1.5 block;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+}
